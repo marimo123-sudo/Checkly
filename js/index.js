@@ -72,7 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return
     }
     const tg = window.Telegram.WebApp;
-
+    if (!tg) {
+        window.close();
+    }
     const formData = new FormData();
     formData.append('tg_id', tg.initDataUnsafe?.user?.id);
     formData.append('name', tg.initDataUnsafe?.user?.first_name);
