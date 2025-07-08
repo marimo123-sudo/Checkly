@@ -1,0 +1,28 @@
+.bottom_panel {
+    position: absolute;
+    height: calc(var(--vh) * 0.1);
+    top: calc(var(--vh) * 0.9);
+    display: flex;
+    flex-direction: row;
+}
+
+
+.bottom_btn {
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    width: 32vw;
+}
+
+
+
+.bottom_img {
+    height: 38%;
+}
+
+
+.bottom_img.profile_img,
+.bottom_img.bottom_ava {
+    border-radius: 100%;
+    height: 44%;
+}

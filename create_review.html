@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+    <link rel="stylesheet" href="css/create_review.css">
+    <link rel="stylesheet" href="css/bottom_panel.css">
+</head>
+<body class="dark">
+    <div class="back">
+        <div class="first_phase phase-screen active-phase">
+            <div class="qu active" id="0">
+                <div class="container_qu">
+                    <div class="username_of_product">Выберите Тип</div>
+                    <div class="select-wrapper" id="selected_type">
+                        <div class="select-display" onclick="toggleOptions()">
+                            <span id="selectedType">Type...</span>
+                            <div class="arrow">▼</div>
+                        </div>
+                        <div class="select-options" id="optionsList">
+                            <div onclick="selectType('Chat')">Chat</div>
+                            <div onclick="selectType('Channel')">Channel</div>
+                            <div onclick="selectType('User')">User</div>
+                        </div>
+                    </div>
+                    <div class="username_of_product">Username</div>
+                    <div contenteditable="true" class="input us" data-placeholder="@checkly"></div>
+                    <div class="hint_for_username">*Напишите @username Чата / Канала / Пользователя</div>
+                    
+                    
+                </div>
+                <button class="next_btn" disabled style="opacity: 0.7; cursor: not-allowed;" onclick="show_second_question()">Далее</button>
+            </div>
+            <div class="qu" id="1">
+
+                <div class="centered">
+                    <div class="for_review_container">
+                        <div class="your_review">Ваш отзыв</div>
+                        <div contenteditable="true" class="input second" id="review_txt" data-placeholder="text..."></div>
+                        <div class="hint_for_review">*Напишите отзыв сюда</div>
+                    </div>
+                    <div class="media">
+                        <div class="media_txt">Медиа</div>
+                        <div class="media-carousel-wrapper">
+                            <div class="media-carousel" id="carousel">
+                                <div class="media-page add-button">
+                                    <label class="file_btn" >
+                                        <input type="file"accept="image/*" hidden onchange="handleFile(this)">
+                                        <span>+</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                    </div>
+                    <div class="dots" id="dots"></div>
+                    <div class="hint_for_media">*Если у вас есть что добавить, сюда можно добавить до 5 фото или видео</div>
+                    <div class="rating_container">
+                        <div class="rating-wrapper">
+                            <div class="stars" id="stars">
+                                <span class="star" data-value="1">&#9733;</span>
+                                <span class="star" data-value="2">&#9733;</span>
+                                <span class="star" data-value="3">&#9733;</span>
+                                <span class="star" data-value="4">&#9733;</span>
+                                <span class="star" data-value="5">&#9733;</span>
+                            </div>
+                            <div class="rating-value" id="ratingValue">1</div>
+                        </div>
+                        <div class="hint">*Обязательно к заполнению</div>
+                    </div>
+                    <button class="finish_review" disabled style="opacity: 0.7; cursor: not-allowed;">Опубликовать</button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="second_phase phase-screen">
+            <div class="centered">
+                <div id="anim0" class="lottie-container" onclick="loadAnimation(0)"></div>
+                <div id="anim1" class="lottie-container" onclick="loadAnimation(1)"></div>
+                <div id="anim2" class="lottie-container" onclick="loadAnimation(2)"></div>
+                <div class="publication_txt">
+                    Публикуем...
+                </div>
+                <img src="photos/loading.png" class="animate-loop loading" alt="">
+                <div class="hidden_content">
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/size.js"></script>
+    <script src="js/create_review.js"></script>
+    <script src="js/telegram.js"></script>
+</body>
