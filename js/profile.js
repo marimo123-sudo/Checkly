@@ -72,6 +72,7 @@ function renderReviews(containerId, reviews, is_product=false) {
     
     reviews.forEach(review => {
         var has_bin = "";
+        var review_id = review.id;
         if (container) {
             if (user_id == review.from_user_id || user_id == review.user_id) {
                 has_bin = `<div class="remove_and_recreate">
@@ -114,6 +115,7 @@ function renderReviews(containerId, reviews, is_product=false) {
         const reviewHTML = `
         <div class="review_container mini" data-review-id="${review.id}">
             <div class="review" onclick="open_profile('${link}')">
+                <div class="review_id">ID: ${review}</div>
                 <div class="first_line">
                     <div class="review_count">${review.stars}</div>
                     <div class="stars">
