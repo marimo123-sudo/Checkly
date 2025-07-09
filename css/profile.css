@@ -462,6 +462,20 @@
     padding-top: 1vh;
 }
 
+.review_id {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 2vh;
+    color: #7d7d7d;
+    font-weight: 300;
+    font-size: calc(var(--vh) * 0.015);
+    
+}
+
+
+
 .first_column {
     width: 72%;
     font-size: 1.6vh;   
