@@ -355,8 +355,7 @@ async function second_phase() {
     var result = await sendReview()
     await new Promise(resolve => setTimeout(resolve, 3500));
     console.log(result);
-    
-    if (result) {
+    if (result && result['message'] == "Отзыв добавлен") {
         forceLoadAnimation(1);
         var txt = document.querySelector(".publication_txt")
         txt.textContent = "Готово!"
@@ -379,14 +378,20 @@ async function second_phase() {
         }
     }
     else {
+        var text_to_show = result['message']
         forceLoadAnimation(2);
         var txt = document.querySelector(".publication_txt")
-        txt.textContent = "Не удалось найти"
+        if (text_to_show) {
+            txt.textContent = text_to_show;
+        }
+        else {
+            txt.textContent = "Не удалось найти";
+        }
         var img = document.querySelector(".loading")
         img.style.display = "none"
         const hiddenContent = document.querySelector('.second_phase .hidden_content');
         hiddenContent.style.display = 'block'; // или можно использовать classList.add('show') если ты хочешь анимацию
-        setTimeout(() => {window.history.back();}, 4000);
+        setTimeout(() => {window.location = "profile.html"}, 4000);
         
     }
     
