@@ -115,7 +115,7 @@ function renderReviews(containerId, reviews, is_product=false) {
         const reviewHTML = `
         <div class="review_container mini" data-review-id="${review.id}">
             <div class="review" onclick="open_profile('${link}')">
-                <div class="review_id">ID: ${review}</div>
+                <div class="review_id">ID: ${review_id}</div>
                 <div class="first_line">
                     <div class="review_count">${review.stars}</div>
                     <div class="stars">
