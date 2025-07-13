@@ -36,11 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         el.src = data['link'][0];
     }
     var center_img = document.getElementById("plus_img");
-    var center_btn = document.getElementById("plus");
-    center_btn.classList.add("favourite");
-    center_img.classList.add("favourite");
-    center_img.src = "photos/favourite.png";
-    center_img.style.height = "33%"
+    center_img.style.height = "33%";
     
 });
 
