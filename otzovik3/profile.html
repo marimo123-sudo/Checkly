@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title></title>
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/bottom_panel.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <div class="back" id="appContent" style="display: none;">
+        <div class="delete_permission_container" id="remove_window">
+            <img class="bin_img" src="photos/bin.png" alt="">
+            <div class="delete_permission_text">Удалить?</div>
+            <div class="yes_no_container">
+                <div class="yes_container btn_container" onclick="yes_btn()">
+                    <img class="yes_no_img yes_img" src="photos/yes.png"alt="">
+                </div>
+                <div class="no_container btn_container" onclick="no_btn()">
+                    <img class="yes_no_img no_img" src="photos/no.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="centered">
+            <div class="profile_container">
+                <div class="profile_info">
+                    <div class="name" id="name"></div>
+                    <div class="subs" id="subs"></div>
+                    <div class="username" id="username"></div>
+                    <div class="user_review_and_link">
+                        <div class="user_review">
+                            <div class="review_number" id="review_number">...</div>
+                            <img src="photos/star.png" class="star" alt="">
+                        </div>
+                        <div class="link" onclick="showCopied()">
+                            <img src="photos/link.png" class="link_img" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="avatar_container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" class="profile_img" alt="">
+                    <div class="fav" id="fav">
+                        <img src="photos/favourite.png" alt="" class="favourite_btn" id="fav0" onclick="do_favourite()">
+                        <img src="photos/favourite_active.png" alt="" class="favourite_btn" id="fav1" onclick="do_favourite()">
+                    </div>
+                </div>
+            </div>
+            <div class="reviews">
+                <div class="otzivi" id="otzivi_txt">Отзывы</div>
+                <div class="btns_container">
+                    <button class="btn for" onclick="triggerAnimation(0)">
+                        <div class="start">
+                            <div class="btn_info_info">
+                                <div class="for_me" id="for_me_txt">О тебе</div>
+                                <div class="count" id="for_me">0</div>
+                            </div>
+                        </div>
+                    </button>
+                    <button class="btn from" onclick="triggerAnimation(1)">
+                        <div class="end">
+                            <div class="btn_info_info sec">
+                                <div class="from_me">От тебя</div>
+                                <div class="count" id="from_me">0</div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="underline" id="underline"></div>
+            </div>
+            <div class="wrapper" id="wrapper">
+                <div class="tab-content-container" id="tabContent">
+                    <!-- Вкладка 1 -->
+                    <div class="tab-content" id="first_tab">
+                        <!-- <div class="nothing_container">
+                            <div class="nothing">Пусто!<br>попроси оставить о тебе отзыв</div>
+                        </div> -->
+                        <div class="review_container" id="0">
+                            <!-- <div class="review">
+                                <div class="first_line">
+                                    <div class="review_count">5</div>
+                                    <div class="stars">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                    </div>
+
+                                </div>
+                                <div class="second_line">
+                                    <div class="first_column">
+                                        <div class="review_txt">Канал реально годный — много интересного контента, часто обновляется. Иногда попадаются посты "не в тему", но в целом подпиской доволен. Есть рекомендации кстати...</div>
+                                        <div class="person">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" class="person_ava" alt="">
+                                            <div class="person_info">
+                                                <div class="person_name">Руслан Г.</div>
+                                                <div class="person_review">
+                                                    <div class="person_review_int">5.0</div>
+                                                    <img class="person_review_img" src="photos/star.png" alt="">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="second_column">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="" class="screenshot">
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- Вкладка 2 -->
+                    <div class="tab-content" id="second_tab">
+                        <!-- <div class="nothing_container">
+                            <div class="nothing">Упс!<br>А тут пусто</div>
+                        </div> -->
+                         <div class="review_container" id="1">
+                            <!-- <div class="review">
+                                <div class="review_id">ID: 302001</div>
+                                <div class="first_line">
+                                    <div class="review_count">5</div>
+                                    <div class="stars">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                        <img src="photos/star.png" alt="" class="review_star">
+                                    </div>
+
+                                </div>
+                                <div class="second_line">
+                                    <div class="first_column">
+                                        <div class="review_txt">Канал реально годный — много интересного контента, часто обновляется. Иногда попадаются посты "не в тему", но в целом подпиской доволен. Есть рекомендации кстати...</div>
+                                        <div class="person">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" class="person_ava" alt="">
+                                            <div class="person_info">
+                                                <div class="person_name">Руслан Г.</div>
+                                                <div class="person_review">
+                                                    <div class="person_review_int">5.0</div>
+                                                    <img class="person_review_img" src="photos/star.png" alt="">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="second_column">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="" class="screenshot" onclick="show_screenshots()">
+                                        <div class="remove_and_recreate">
+                                            <div>
+                                                <img src="" alt="" class="recreate">
+                                            </div>
+                                            <img src="photos/bin.png" alt="" class="remove">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="link_copied" id="linkCopied">
+                <div class="link_copied_text" id="link_copied_text">Ссылка скопирована!</div>
+                <img src="photos/chain.png" id="chain_img" class="chain_img">
+            </div>
+        </div>
+        <div class="bottom_panel">
+            <button class="bottom_btn" id="search">
+                <img src="photos/search.png" alt="" class="bottom_img">
+            </button>
+            <button class="bottom_btn" id="plus">
+                <img src="photos/plus.png" alt="" class="bottom_img" id="plus_img">
+            </button>
+            <button class="bottom_btn" id="profile">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="" class="bottom_img bottom_ava">
+            </button>
+        </div>
+    </div>
+   <!-- Модалка для просмотра скриншотов -->
+    <div id="modal" class="modal hidden">
+        <span id="close">&times;</span>
+        <img id="modal-img" src="" />
+        <div id="modal-nav">
+            <button id="prev">&#10094;</button>
+            <button id="next">&#10095;</button>
+        </div>
+    </div>
+    <script src="js/profile.js"></script>
+    <script src="js/telegram.js"></script>
+    <script src="js/size.js"></script>
+    <!-- <script src="js/bottom_panel.js"></script> -->
+</body>

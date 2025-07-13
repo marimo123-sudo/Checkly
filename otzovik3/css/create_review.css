@@ -1,0 +1,370 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    user-select: none;       /* Запрет выделения текста */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.back {
+    width: 100vw;
+    min-height: calc(var(--vh) * 1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.phase-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+.phase-screen.active-phase {
+    display: block;
+    opacity: 1;
+    z-index: 10;
+    pointer-events: auto;
+    transition: opacity 0.5s ease;
+}
+
+.centered {
+    width: 100vw;
+    padding-top: calc(var(--vh) * 0.02);;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.publication_txt {
+    font-weight: 500;
+    text-align: center;
+    width: 90vw;
+}
+
+/* Анимации */
+@keyframes spinLoop {
+    0% { transform: rotate(900deg); }
+    100% { transform: rotate(1260deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.loading {
+    margin-top: calc(var(--vh) * 0.03);
+    height: calc(var(--vh) * 0.05);
+    transform-origin: center center;
+}
+
+.animate-accelerate {
+    animation: spinAccelerate 3s ease-in-out forwards;
+}
+
+.animate-loop {
+    animation: spinLoop 1s linear infinite;
+}
+
+.hidden_content {
+    display: none;
+}
+
+.hidden_content.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.lottie-container {
+    width: 50%;
+    padding-top: calc(var(--vh) * 0.28);
+}
+
+/* Ввод */
+.input, .us {
+    width: 85vw;
+    min-height: calc(var(--vh) * 0.05);
+    max-height: calc(var(--vh) * 0.2);
+    margin-bottom: calc(var(--vh) * 0.01);
+    padding: calc(var(--vh) * 0.013) 5vw;
+    font-size: calc(var(--vh) * 0.02);
+    border-radius: 6px;
+    background-color: #EBE8E8;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-word;
+    outline: none;
+}
+
+.input.us {
+    width: 80vw;
+    max-width: 300px;
+}
+
+.input:empty::before,
+.us:empty::before {
+    content: attr(data-placeholder);
+    position: absolute;
+    top: 50%;
+    left: 5vw;
+    transform: translateY(-50%);
+    color: #000;
+    pointer-events: none;
+}
+
+.username_of_product {
+    font-weight: 600;
+    font-size: calc(var(--vh) * 0.02);
+    padding-bottom: calc(var(--vh) * 0.01);
+}
+
+.hint_for_username,
+.hint_for_review {
+    font-size: calc(var(--vh) * 0.016);
+}
+
+.your_review,
+.media_txt {
+    font-weight: 600;
+    padding-bottom: calc(var(--vh) * 0.02);
+}
+
+.qu {
+    display: none;
+}
+
+.qu.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.container_qu {
+    padding-top: calc(var(--vh) * 0.3);
+    width: 80vw;
+    height: calc(var(--vh) * 1);
+}
+
+/* Медиа */
+.media {
+    width: 85%;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    margin-top: calc(var(--vh) * 0.02);
+}
+
+.media-carousel-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.media-carousel {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    touch-action: pan-y;
+}
+
+.media-page {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.media-page img,
+.media-page video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.file_btn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.add-button span {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    font-size: 8vw;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    cursor: pointer;
+}
+
+.hint_for_media {
+    width: 85vw;
+    padding-top: calc(var(--vh) * 0.01);
+    font-weight: 500;
+    font-size: calc(var(--vh) * 0.017);
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vw;
+    gap: 2vw;
+}
+
+.dot {
+    width: 3vw;
+    height: 2px;
+    background-color: rgb(173, 173, 173);
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #000;
+}
+
+.dot:hover {
+    opacity: 0.7;
+}
+
+/* Оценка */
+.rating_container {
+    padding-top: calc(var(--vh) * 0.02);
+    width: 85vw;
+}
+
+.rating-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.stars {
+    display: flex;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.star {
+    font-size: 30px;
+    color: #ccc;
+    transition: color 0.2s;
+    outline: none;
+}
+
+.star.active {
+    color: black;
+}
+
+.rating-value {
+    font-size: calc(var(--vh) * 0.04);
+    font-weight: 500;
+}
+
+.hint {
+    font-size: calc(var(--vh) * 0.018);
+    color: #333;
+    margin-top: 4px;
+}
+
+/* Кнопки */
+.next_btn,
+.finish_review {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: calc(var(--vh) * 0.13);
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.finish_review {
+    padding-top: calc(var(--vh) * 0.05);
+    padding-bottom: calc(var(--vh) * 0.05);
+    position: relative;
+}
+
+/* Особенности горизонтального поля */
+.us {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 30px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.select-display {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 18px;
+    background-color: #EBE8E8;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-display .arrow {
+    font-size: 12px;
+    color: #555;
+}
+
+.select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #EBE8E8;
+    z-index: 10;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.select-options div {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.select-options div:hover {
+    background-color: #f0f0f0;
+}
