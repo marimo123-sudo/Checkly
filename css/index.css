@@ -64,7 +64,6 @@ body.loaded {
     align-items: center;
 }
 
-
 @font-face {
     font-family: 'Graphik';
     src: url('/families/Graphik-Bold.woff2') format('woff2');
@@ -75,17 +74,15 @@ body.loaded {
 
 @font-face {
     font-family: 'Shree Devanagari 714';
-    src: url('/families/ShreeDev0714.woff2') format('woff2');
+    src: url('../families/ShreeDev0714.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
-
 .stil {
     font-family: "Graphik";
 }
-
 
 .name {
     font-weight: 700;
@@ -94,11 +91,10 @@ body.loaded {
 }
 
 .by {
+    font-size: max(calc(var(--vh) * 0.012), 8px);
     font-family: "Shree Devanagari 714";
     font-weight: 700;
-    font-size: max(calc(var(--vh) * 0.012), 8px);
 }
-
 
 .load_and_version {
     position: absolute;
