@@ -17,39 +17,38 @@
         <div class="loader"></div>
     </div>
     <div class="back" id="appContent">
-    <div class="centered">
-        <div class="about_project_container">
-            <div class="about_project" onclick="open_telegraph()">
-                <div class="txt">О проекте</div>
-                <img src="photos/three_lines.png" alt="info" width="24">
+        <div class="centered">
+            <div class="about_project_container">
+                <div class="about_project" onclick="open_telegraph()">
+                    <div class="txt">О проекте</div>
+                    <img src="photos/three_lines.png" alt="info" width="24">
+                </div>
             </div>
-        </div>
 
-        <div class="input-container">
-            <div contenteditable="true" class="input" data-placeholder="@use_checkly_bot"></div>
-            <button class="arrow-button">
-                <img src="photos/search.png" alt="→">
+            <div class="input-container">
+                <div contenteditable="true" class="input" data-placeholder="@use_checkly_bot"></div>
+                <button class="arrow-button">
+                    <img src="photos/search.png" alt="→">
+                </button>
+            </div>
+
+
+            <div id="lottie-container" onclick="loadAnimation()"></div>
+        </div>
+        <div class="link_copied" id="linkCopied">Не удалось найти
+            <img src="photos/search.png" alt="" class="chain_img">
+        </div>
+        <div class="bottom_panel">
+            <button class="bottom_btn" id="search">
+                <img src="photos/search.png" alt="" class="bottom_img">
+            </button>
+            <button class="bottom_btn" id="plus">
+                <img src="photos/plus.png" alt="" class="bottom_img" id="plus_img">
+            </button>
+            <button class="bottom_btn" id="profile">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="" class="bottom_img bottom_ava">
             </button>
         </div>
-
-
-        <div id="lottie-container" onclick="loadAnimation()"></div>
-    </div>
-    <div class="link_copied" id="linkCopied">Не удалось найти
-        <img src="photos/search.png" alt="" class="chain_img">
-    </div>
-    <div class="bottom_panel">
-        <button class="bottom_btn" id="search">
-            <img src="photos/search.png" alt="" class="bottom_img">
-        </button>
-        <button class="bottom_btn" id="plus">
-            <img src="photos/plus.png" alt="" class="bottom_img">
-        </button>
-        <button class="bottom_btn" id="profile">
-            <img src="" alt="" class="bottom_img profile_img">
-        </button>
-        
-    </div>
     </div>
 
     <script src="js/telegram.js"></script>
