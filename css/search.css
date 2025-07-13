@@ -10,6 +10,15 @@
     -ms-user-select: none;
 }
 
+
+@font-face {
+    font-family: 'Shree Devanagari 714';
+    src: url('/families/ShreeDev0714.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 #preloader {
     position: fixed;
     top: 0;
@@ -50,6 +59,7 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #fff;
 }
 
 .centered {
@@ -107,7 +117,7 @@ body, html {
     flex: 1;
     outline: none;
     font-size: 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Shree Devanagari 714";
     white-space: nowrap;
     overflow-x: auto;
     max-width: 100%;
