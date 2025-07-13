@@ -119,9 +119,11 @@ inputDiv.addEventListener('keydown', async function (e) {
 
 
 window.addEventListener('load', () => {
-    document.getElementById('preloader').style.display = 'none';
-    document.getElementById('appContent').style.display = 'flex';
     const tg = window.Telegram.WebApp;
     tg.ready();
     tg.BackButton.hide();
+    setTimeout(() => {
+        document.getElementById('preloader').style.display = 'none';
+        document.getElementById('appContent').style.display = 'flex';
+    }, 1000);
 });

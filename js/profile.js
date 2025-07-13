@@ -150,8 +150,10 @@ function renderReviews(containerId, reviews, is_product=false) {
 
 
 window.addEventListener('load', () => {
-    document.getElementById('preloader').style.display = 'none';
-    document.getElementById('appContent').style.display = 'flex';
+    setTimeout(() => {
+        document.getElementById('preloader').style.display = 'none';
+        document.getElementById('appContent').style.display = 'flex';
+    }, 1000);
 });
 
 var favourite_btn0 = document.getElementById("fav0");

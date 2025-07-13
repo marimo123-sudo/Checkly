@@ -130,10 +130,11 @@ function removefavuriteById(id) {
 }
 
 window.addEventListener('load', () => {
-    document.getElementById('preloader').style.display = 'none';
-    document.getElementById('appContent').style.display = 'flex';
+    setTimeout(() => {
+        document.getElementById('preloader').style.display = 'none';
+        document.getElementById('appContent').style.display = 'flex';
+    }, 1000);
 });
-
 
 // Удаление из избранного
 async function removeFromFavourites(e, productId) {
