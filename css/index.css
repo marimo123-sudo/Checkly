@@ -66,7 +66,7 @@ body.loaded {
 
 @font-face {
     font-family: 'Graphik';
-    src: url('/families/Graphik-Bold.woff2') format('woff2');
+    src: url('../families/Graphik-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
