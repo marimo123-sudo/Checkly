@@ -94,7 +94,7 @@
 
 @font-face {
     font-family: 'Shree Devanagari 714';
-    src: url('/families/ShreeDev0714.woff2') format('woff2');
+    src: url('./families/ShreeDev0714.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -372,7 +372,9 @@
 .link_copied {
     position: absolute;
     top: calc(var(--vh) * 0.9);
-    border: solid 1px gray;
+    /* border: solid 1px gray; */
+    border: none;
+    background-color: #E6E6E6;
     padding: 1vw;
     padding-left: 2vw;
     border-radius: 100px;
@@ -384,6 +386,7 @@
     justify-content: center;
     align-items: center;
     gap: 1vw;
+    z-index: 10000;
 }
 
 .show_content {
