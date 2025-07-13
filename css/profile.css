@@ -372,8 +372,7 @@
 .link_copied {
     position: absolute;
     top: calc(var(--vh) * 0.9);
-    /* border: solid 1px gray; */
-    border: none;
+    border: solid 1px #ffffff;
     background-color: #E6E6E6;
     padding: 1vw;
     padding-left: 2vw;
