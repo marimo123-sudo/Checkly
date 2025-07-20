@@ -245,7 +245,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             var product_info = await product_response.json();
             product_data = product_info['product'];
             console.log(product_info);
-            document.getElementById("subs").textContent = `БОТ`;
+            if (product_data['members']) {
+                document.getElementById("subs").textContent = `${product_data['members']} подписчиков`;
+            }
+            else {
+                document.getElementById("subs").textContent = "БОТ";
+            }
             document.getElementById("name").textContent = product_data["name"]; // предполагаем, что это имя
             document.getElementById("username").textContent = `@${product_data["username"]}`; // предполагаем, что это username
             main_review.textContent = product_data["review"];
