@@ -57,8 +57,14 @@ search_btn.addEventListener("click", async () => {
     }
 });
 
+var can_search = true
 
 async function startSearch() {
+    if (!can_search) {
+        return
+    }
+    search_btn.style.opacity = 0.7;
+    can_search = false
     const input = document.querySelector('.input');
     const query = input.textContent.trim();
     var response
@@ -109,6 +115,8 @@ async function startSearch() {
             window.location = link;
         }
     }
+    can_search = true
+    search_btn.style.opacity = 1
 }
 
 
