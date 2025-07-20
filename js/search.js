@@ -68,10 +68,10 @@ async function startSearch() {
             if (query.includes("-100")) {
                 query = query.replace("-100", "")
             }
-            response = await fetch(`https://otzoviktg.ru/get_product_info?chat_id=${query}`);
+            response = await fetch(`https://otzoviktg.ru/get_product_info?chat_id=${query}&tg_id=${window.Telegram.WebApp.initDataUnsafe?.user.id}`);
         }
         else {
-            response = await fetch(`https://otzoviktg.ru/get_product_info?username=${query}`);
+            response = await fetch(`https://otzoviktg.ru/get_product_info?username=${query}&tg_id=${window.Telegram.WebApp.initDataUnsafe?.user.id}`);
         }
         var data = await response.json();
         console.log(data);
@@ -84,6 +84,7 @@ async function startSearch() {
             setTimeout(() => {
                 sms.classList.remove('move-up');
             }, 2000);
+            return
         }
         if (data['detail'] == "Product not found") {
             console.log("error");
