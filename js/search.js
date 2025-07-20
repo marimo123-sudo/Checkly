@@ -76,11 +76,20 @@ async function startSearch() {
         var data = await response.json();
         console.log(data);
         console.log(response);
-        
+        if ("error" in data) {
+            console.log("error");
+            var sms = document.querySelector(".link_copied");
+            sms.classList.add("move-up");
+            sms.textContent = data['message'];
+            setTimeout(() => {
+                sms.classList.remove('move-up');
+            }, 2000);
+        }
         if (data['detail'] == "Product not found") {
             console.log("error");
             var sms = document.querySelector(".link_copied");
             sms.classList.add("move-up");
+            sms.textContent = "Не удалось найти"
             setTimeout(() => {
                 sms.classList.remove('move-up');
             }, 2000);
