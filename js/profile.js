@@ -245,11 +245,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             var product_info = await product_response.json();
             product_data = product_info['product'];
             console.log(product_info);
-            document.getElementById("subs").textContent = `${product_data['members']} подписчиков`;
+            document.getElementById("subs").textContent = `БОТ`;
             document.getElementById("name").textContent = product_data["name"]; // предполагаем, что это имя
             document.getElementById("username").textContent = `@${product_data["username"]}`; // предполагаем, что это username
             main_review.textContent = product_data["review"];
             ava.src = product_data["avatar"];
+            if (ava.style.height == "0" || product_data["avatar"] == null) {
+                ava.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+            }
             var btn_from_me = document.querySelector(".from");
             btn_from_me.style.display = 'none';
             console.log(product_data);
