@@ -151,7 +151,7 @@
     font-size: 2.3vh;
     max-width: 45vw;
     display: -webkit-box;
-    line-clamp: 2;       /* ограничиваем до 2 строк */
+    -webkit-line-clamp: 2;       /* ограничиваем до 2 строк */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
