@@ -65,6 +65,7 @@ function open_profile(id) {
 
 // Получение избранных продуктов
 async function loadFavourites() {
+    var link_to_photo = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
     const container = document.querySelector('.favourite_container');
     const tg = window.Telegram.WebApp;
     const user = tg.initDataUnsafe?.user;
@@ -88,13 +89,14 @@ async function loadFavourites() {
             else {
                 product_members = "БОТ";
             }
+            
             const itemHTML = `
                 <div class="favourite_item_container" data-product-id="${product.id}" onclick="open_profile(${product.id})">
                     <div class="favourite_item_and_bin">
                         <div class="favourite_item">
                             <div class="first_column">
                                 <div class="first_line">
-                                    <img src="${product.avatar || 'photos/ava.png'}" class="product_ava" alt="">
+                                    <img src="${product.avatar || link_to_photo}" class="product_ava" alt="">
                                     <div class="name_and_username">
                                         <div class="name">${product.name}</div>
                                         <div class="username">@${product.username}</div>
