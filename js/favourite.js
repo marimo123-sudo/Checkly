@@ -79,6 +79,13 @@ async function loadFavourites() {
             add_nothing_text();
             return;
         }
+        var product_members
+        if (product.members) {
+            product_members = `Подписчиков: ${product.members}`;
+        }
+        else {
+            product_members = "БОТ";
+        }
         container.innerHTML = ''; // Очистим контейнер перед добавлением
         favourites.forEach(product => {
             const itemHTML = `
