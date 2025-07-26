@@ -57,20 +57,20 @@ function loadAnimation() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    
-    if (isDesktop()) {
-        console.log("Пользователь, скорее всего, за ноутбуком/ПК");
-        // Твоя логика тут
-        var pc_container = document.getElementById("pc_container");
-        var cont1 = document.getElementById("container_for_name");
-        var cont2 = document.getElementById("load_and_version");
-        cont1.style.display = "none";
-        cont2.style.display = "none";
 
-        pc_container.style.display = "flex";
-        loadAnimation();
-        return
-    }
+    // if (isDesktop()) {
+    //     console.log("Пользователь, скорее всего, за ноутбуком/ПК");
+    //     // Твоя логика тут
+    //     var pc_container = document.getElementById("pc_container");
+    //     var cont1 = document.getElementById("container_for_name");
+    //     var cont2 = document.getElementById("load_and_version");
+    //     cont1.style.display = "none";
+    //     cont2.style.display = "none";
+
+    //     pc_container.style.display = "flex";
+    //     loadAnimation();
+    //     return
+    // }
     const tg = window.Telegram.WebApp;
     if (!tg) {
         window.close();
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append('name', tg.initDataUnsafe?.user?.first_name);
     formData.append('username', tg.initDataUnsafe?.user?.username);
 
-    fetch('https://otzoviktg.ru/verify_user', {
+    fetch('https://otozviktgtest.ru/verify_user', {
         method: 'POST',
         body: formData
     })

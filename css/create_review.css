@@ -309,6 +309,8 @@ html, body {
 }
 
 .finish_review {
+    font-size: calc(var(--vh) * 0.022);
+    color: rgb(29, 29, 29);
     padding-top: calc(var(--vh) * 0.05);
     padding-bottom: calc(var(--vh) * 0.05);
     position: relative;

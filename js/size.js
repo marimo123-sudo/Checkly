@@ -37,5 +37,3 @@ document.addEventListener('touchstart', function (e) {
         active.blur();
     }
 });
-
-

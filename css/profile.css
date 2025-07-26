@@ -9,6 +9,55 @@
     -ms-user-select: none;
 }
 
+
+
+
+.review_txt.expanded::after {
+    display: none;
+}
+
+.review_txt::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2em;
+    /* background: linear-gradient(to bottom, transparent, #EBE8E8); цвет как фон карточки */
+    pointer-events: none;
+}
+
+
+
+
+.review_txt {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Ограничиваем количество строк */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+    border: none !important;
+    word-break: break-word; /* Переносит длинные слова */
+    overflow-wrap: break-word; /* Альтернативное свойство для переноса */
+    white-space: pre-line; /* Сохраняет переносы строк, но переносит по словам */
+}
+
+.review_txt.expanded {
+    -webkit-line-clamp: unset;
+}
+
+.show_more_btn {
+    color: #b3b3b3;
+    font-size: calc(var(--vh) * 0.018);
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
 .delete_permission_container {
     opacity: 0;
     z-index: 30;
@@ -47,12 +96,31 @@
     justify-content: space-between;
 }
 
+.review_time {
+    position: absolute;
+    top: 1.65vh;
+    left: 2vh;
+    font-size: 1.4vh;
+    color: #7d7d7d;
+    font-weight: 400;
+}
+
+.review_id {
+    /* Сдвигаем ID ниже, чтобы не пересекался с датой */
+    bottom: 1vh;
+    padding-bottom: 1vh;
+}
+
 .btn_container {
     height: 100%;
     width: 40vw;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.all_width {
+    width: 130%;
 }
 
 .yes_no_img {
@@ -127,7 +195,7 @@
     position: absolute;
     width: 100%;
     height: calc(var(--vh) * 0.16);
-    top: calc(var(--vh) * 0.08);
+    top: calc(var(--vh) * 0.04);
     display: flex;
 }
 
@@ -193,6 +261,7 @@
 }
 
 
+
 .user_review_and_link {
     gap: 0.8vw;
     display: flex;
@@ -237,7 +306,7 @@
     position: relative;
     width: 100%;
     height: calc(var(--vh) * 0.08);
-    top: calc(var(--vh) * 0.26);
+    top: calc(var(--vh) * 0.22);
 }
 
 .otzivi {
@@ -333,7 +402,7 @@
 .tab-content {
     position: relative;
     overflow-y: auto;
-    height: calc(var(--vh) * 0.5);
+    height: calc(var(--vh) * 0.56);
     width: 100%;
     box-sizing: border-box;
 }
@@ -342,7 +411,7 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-    top: calc(var(--vh) * 0.3);
+    top: calc(var(--vh) * 0.26);
 }
 
 .subs {
@@ -416,7 +485,12 @@
     border-radius: 20px;
     min-height: 10vh;
     z-index: 1;
+    border: none; /* Добавляем это свойство */
+    box-shadow: none; /* На всякий случай убираем тени */
+    outline: none; /* Убираем outline */
+    
 }
+
 
 
 .first_line {
@@ -485,7 +559,7 @@
 }
 
 .person {
-    padding-top: 2.4vh;
+    padding-top: 1.5vh;
     display: flex;
     justify-content: start;
     align-items: center;

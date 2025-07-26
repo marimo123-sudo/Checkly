@@ -1,7 +1,7 @@
 .bottom_panel {
     position: absolute;
-    height: calc(var(--vh) * 0.1);
-    top: calc(var(--vh) * 0.9);
+    height: calc(var(--vh) * 0.09);
+    top: calc(var(--vh) * 0.91);
     display: flex;
     flex-direction: row;
 }

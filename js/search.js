@@ -25,11 +25,11 @@ function loadAnimation() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-    var response = await fetch(`https://otzoviktg.ru/get_avatar?tg_id=${window.Telegram.WebApp.initDataUnsafe?.user.id}`)
+    var response = await fetch(`https://otozviktgtest.ru/get_avatar?tg_id=${window.Telegram.WebApp.initDataUnsafe?.user.id}`)
     var data = await response.json();
     console.log(data);
     var el = document.querySelector('.profile_img')
-    if (el.style.height == "0" || data['link'][0] == null) {
+    if (el.style.height == "0" || data['link'][0] == null || !data['link'][0]?.includes("https")) {
         el.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
     }
     else {
@@ -74,10 +74,10 @@ async function startSearch() {
             if (query.includes("-100")) {
                 query = query.replace("-100", "")
             }
-            response = await fetch(`https://otzoviktg.ru/get_product_info?chat_id=${query}&tg_id=${window.Telegram.WebApp.initDataUnsafe?.user.id}`);
+            response = await fetch(`https://otozviktgtest.ru/get_product_info?chat_id=${query}&tg_id=${window.Telegram.WebApp.initDataUnsafe?.user.id}`);
         }
         else {
-            response = await fetch(`https://otzoviktg.ru/get_product_info?username=${query}&tg_id=${window.Telegram.WebApp.initDataUnsafe?.user.id}`);
+            response = await fetch(`https://otozviktgtest.ru/get_product_info?username=${query}&tg_id=${window.Telegram.WebApp.initDataUnsafe?.user.id}`);
         }
         var data = await response.json();
         console.log(data);

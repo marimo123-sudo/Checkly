@@ -69,21 +69,27 @@ function renderReviews(containerId, reviews, is_product=false) {
         return;
     }
     
-    
     reviews.forEach(review => {
         var has_bin = "";
         var review_id = review.id;
         if (container) {
             if (user_id == review.from_user_id || user_id == review.user_id) {
                 has_bin = `<div class="remove_and_recreate">
-                                
                                 <img src="photos/bin.png" alt="" class="remove" onclick="delete_review(event, ${review.id})">
                             </div>`;
             }
         }
+        
+        // Получаем текст отзыва
+        var review_text = review.text || "";
+        // Добавляем кнопку "Показать больше/меньше" если текст длинный
+        var showMoreBtn = "";
+        if (review_text.length > 100) {
+            showMoreBtn = `<div class="show_more_btn" onclick="toggleReviewText(event)">Развернуть</div>`;
+        }
+        
         if (is_product) {
             var stars = review.stars;
-            var review_text = review.text;
             var reviewer_avatar = review.avatar;
             var person_name = review.username;
             var photos = review.photos[0] ? `<img src="${review.photos[0]}" alt="" class="screenshot" onclick='show_screenshots(event, ${JSON.stringify(review.photos)})'>` : '';
@@ -95,7 +101,6 @@ function renderReviews(containerId, reviews, is_product=false) {
         }
         else {
             var stars = review.stars;
-            var review_text = review.text;
             var reviewer_avatar = review.to_product_avatar || review.to_user_avatar || review.from_avatar;
             var person_name = review.to_product_name || review.to_user_name || review.from_name;
             var photos = review.images[0] ? `<img src="${review.images[0] || ""}" alt="" class="screenshot" onclick='show_screenshots(event, ${JSON.stringify(review.images)})'>` : ''
@@ -105,16 +110,22 @@ function renderReviews(containerId, reviews, is_product=false) {
             else {
                 var link = `user=${review.to_user_tg_id || review.user_tg_id}`;
             }
-            if (!reviewer_avatar) {
+            if (!reviewer_avatar || !reviewer_avatar?.includes("https")) {
                 reviewer_avatar = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
             }
             var person_review = review.to_product_avg_rating || review.to_user_avg_rating || review.product_avg_rating;
         }
-        console.log(link);
-        
+        var text_review_div = `<div class="review_txt">${review_text}</div>`
+        if (!photos) {
+            text_review_div = `<div class="review_txt all_width">${review_text}</div>`
+        }
+        const timeAgo = formatTimeAgo(review.created_at);
         const reviewHTML = `
         <div class="review_container mini" data-review-id="${review.id}">
+        
             <div class="review" onclick="open_profile('${link}')">
+                <div class="review_time">${timeAgo}</div>  <!-- Новая строка -->
+                <div class="review_id">ID: ${review_id}</div>
                 <div class="review_id">ID: ${review_id}</div>
                 <div class="first_line">
                     <div class="review_count">${review.stars}</div>
@@ -124,7 +135,8 @@ function renderReviews(containerId, reviews, is_product=false) {
                 </div>
                 <div class="second_line">
                     <div class="first_column">
-                        <div class="review_txt">${review_text}</div>
+                        ${text_review_div}
+                        ${showMoreBtn}
                         <div class="person">
                             <img src=${reviewer_avatar} class="person_ava" alt="">
                             <div class="person_info">
@@ -142,10 +154,56 @@ function renderReviews(containerId, reviews, is_product=false) {
                     </div>
                 </div>
             </div>
-        </div>`
-        ;
+        </div>`;
         container.insertAdjacentHTML('beforeend', reviewHTML);
     });
+}
+
+function formatTimeAgo(dateString) {
+    const now = new Date();
+    const date = new Date(dateString);
+    const diffInSeconds = Math.floor((now - date) / 1000);
+    
+    // Если дата в будущем (на всякий случай)
+    if (diffInSeconds < 0) return "только что";
+
+    // Форматируем разницу
+    if (diffInSeconds < 60) {
+        return "только что";
+    } else if (diffInSeconds < 3600) {
+        const mins = Math.floor(diffInSeconds / 60);
+        return `${mins} мин назад`;
+    } else if (diffInSeconds < 86400) {
+        const hours = Math.floor(diffInSeconds / 3600);
+        return `${hours} ч назад`;
+    } else if (diffInSeconds < 172800) { // Менее 2 дней
+        return "вчера";
+    } else if (diffInSeconds < 604800) { // Менее 7 дней
+        const days = Math.floor(diffInSeconds / 86400);
+        return `${days} д назад`;
+    } else {
+        // Для дат старше 7 дней - выводим в формате "25.07.2025"
+        return date.toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        }).replace(/\//g, '.');
+    }
+}
+
+
+function toggleReviewText(event) {
+    event.stopPropagation(); // Предотвращаем переход по ссылке
+    const btn = event.target;
+    const reviewText = btn.previousElementSibling;
+    
+    reviewText.classList.toggle('expanded');
+    
+    if (reviewText.classList.contains('expanded')) {
+        btn.textContent = 'Свернуть';
+    } else {
+        btn.textContent = 'Развернуть';
+    }
 }
 
 
@@ -188,12 +246,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
     product_id = params.get("product_id");
     const user_of_profile_id = params.get('user');
-    var profile_link = `https://otzoviktg.ru/get_person?tg_id=${tg_id}`;
+    var profile_link = `https://otozviktgtest.ru/get_person?tg_id=${tg_id}`;
     if (product_id) {
-        profile_link = `https://otzoviktg.ru/get_person?tg_id=${tg_id}&product_id=${product_id}`;
+        profile_link = `https://otozviktgtest.ru/get_person?tg_id=${tg_id}&product_id=${product_id}`;
     }
     else if (user_of_profile_id) {
-        profile_link = `https://otzoviktg.ru/get_person?tg_id=${user_of_profile_id}&my_tg_id=${tg_id}`;
+        profile_link = `https://otozviktgtest.ru/get_person?tg_id=${user_of_profile_id}&my_tg_id=${tg_id}`;
     }
     console.log(profile_link);
     
@@ -211,7 +269,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     user_id = user_data[0];
     var from_me_count = document.getElementById("from_me")
     var for_me_count = document.getElementById("for_me")
-    if (ava.style.height == "0" || user_data[3] == null) {
+    if (ava.style.height == "0" || !user_data[3] || !user_data[3]?.includes("https")) {
         bottom_ava.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
         ava.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
     }
@@ -241,7 +299,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             console.log(product_id);
             what_is_is = "product";
-            var product_response = await fetch(`https://otzoviktg.ru/get_reviews?product_id=${product_id}`)
+            var product_response = await fetch(`https://otozviktgtest.ru/get_reviews?product_id=${product_id}`)
             var product_info = await product_response.json();
             product_data = product_info['product'];
             console.log(product_info);
@@ -255,7 +313,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("username").textContent = `@${product_data["username"]}`; // предполагаем, что это username
             main_review.textContent = product_data["review"];
             ava.src = product_data["avatar"];
-            if (ava.style.height == "0" || product_data["avatar"] == null) {
+            if (ava.style.height == "0" || product_data["avatar"] == null || !user_data[3]?.includes("https")) {
                 ava.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
             }
             var btn_from_me = document.querySelector(".from");
@@ -267,14 +325,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             get_reviews_count = review_list.length;
             for_me_count.textContent = get_reviews_count;
             var fav_container = document.getElementById("fav");
-            index_response = await fetch(`https://otzoviktg.ru/is_favourite?user_id=${tg_id}&product_id=${product_id}`);
+            index_response = await fetch(`https://otozviktgtest.ru/is_favourite?user_id=${tg_id}&product_id=${product_id}`);
             started_index = await index_response.json();
             started_index = started_index;
             favourite_index = started_index;
             var for_me_txt = document.getElementById("for_me_txt");
             var otzivi_text = document.getElementById("otzivi_txt");
             var wrapper = document.getElementById("wrapper");
-            wrapper.style.top = "calc(var(--vh) * 0.264)";
+            wrapper.style.top = "calc(var(--vh) * 0.224)";
 
             for_me_txt.textContent = "Отзывы";
             otzivi_text.style.display = "none";
@@ -305,21 +363,25 @@ document.addEventListener("DOMContentLoaded", async () => {
                 var for_me_txt = document.getElementById("for_me_txt");
                 var otzivi_text = document.getElementById("otzivi_txt");
                 var wrapper = document.getElementById("wrapper");
+                var wrapper_1 = document.getElementById("second_tab");
+                var wrapper_2 = document.getElementById("first_tab");
                 for_me_txt.textContent = "Отзывы";
                 otzivi_text.style.display = "none";
-                wrapper.style.top = "calc(var(--vh) * 0.264)";
-                var user_of_profile_response = await fetch(`https://otzoviktg.ru/get_person?tg_id=${tg_id}`);
+                wrapper.style.top = "calc(var(--vh) * 0.224)";
+                wrapper_1.style.height = "calc(var(--vh) * 0.6)";
+                wrapper_2.style.height = "calc(var(--vh) * 0.6)";
+                var user_of_profile_response = await fetch(`https://otozviktgtest.ru/get_person?tg_id=${tg_id}`);
                 var user_of_profile_data = await user_of_profile_response.json();
                 console.log(user_of_profile_data);
                 document.getElementById("name").textContent = user_of_profile_data[2]; // предполагаем, что это имя
                 ava.src = user_of_profile_data[3];
-                if (ava.style.height == "0" || user_of_profile_data[3] == null) {
+                if (ava.style.height == "0" || user_of_profile_data[3] == null || !user_data[3]?.includes("https")) {
                     ava.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
                 }
                 main_review.textContent = user_of_profile_data[4];
                 var btn_from_me = document.querySelector(".from")
                 btn_from_me.style.display = 'none';
-                var reviews_response = await fetch(`https://otzoviktg.ru/get_user_reviews?tg_id=${user_of_profile_id}`)
+                var reviews_response = await fetch(`https://otozviktgtest.ru/get_user_reviews?tg_id=${user_of_profile_id}`)
                 var reviews_data = await reviews_response.json();
                 console.log(reviews_data);
 
@@ -343,7 +405,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 center_img.style.height = "33%"
                 document.getElementById("name").textContent = `${firstName} ${lastName}`.trim();
                 document.getElementById("username").textContent = username ? `@${username}` : "@Anonim";
-                var reviews_response = await fetch(`https://otzoviktg.ru/get_user_reviews?tg_id=${tg_id}`)
+                var reviews_response = await fetch(`https://otozviktgtest.ru/get_user_reviews?tg_id=${tg_id}`)
                 var reviews_data = await reviews_response.json();
                 console.log(reviews_data);
                 var from_me = reviews_data["received_reviews"];
@@ -500,7 +562,7 @@ function add_nothing(index) {
 }
 
 async function remove_review(id) {
-    var remove_response = await fetch(`https://otzoviktg.ru/remove_review?id=${id}`, {
+    var remove_response = await fetch(`https://otozviktgtest.ru/remove_review?id=${id}`, {
         method: "POST"
     })
     var data = await remove_response.json();
@@ -598,8 +660,8 @@ function open_profile(query) {
 
 async function add_favourite(product_id, user_tg_id, add) {
     const url = add
-        ? "https://otzoviktg.ru/add_favourite"
-        : "https://otzoviktg.ru/remove_favourite";
+        ? "https://otozviktgtest.ru/add_favourite"
+        : "https://otozviktgtest.ru/remove_favourite";
 
     const body = {
         user_id: user_tg_id,
