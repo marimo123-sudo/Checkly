@@ -1,4 +1,4 @@
-const API_URL = 'https://otozviktgtest.ru'; // Замените на ваш реальный адрес API
+const API_URL = 'https://otzoviktg.ru'; // Замените на ваш реальный адрес API
 let tg_id;
 
 

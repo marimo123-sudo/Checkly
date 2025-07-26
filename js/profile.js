@@ -246,12 +246,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
     product_id = params.get("product_id");
     const user_of_profile_id = params.get('user');
-    var profile_link = `https://otozviktgtest.ru/get_person?tg_id=${tg_id}`;
+    var profile_link = `https://otzoviktg.ru/get_person?tg_id=${tg_id}`;
     if (product_id) {
-        profile_link = `https://otozviktgtest.ru/get_person?tg_id=${tg_id}&product_id=${product_id}`;
+        profile_link = `https://otzoviktg.ru/get_person?tg_id=${tg_id}&product_id=${product_id}`;
     }
     else if (user_of_profile_id) {
-        profile_link = `https://otozviktgtest.ru/get_person?tg_id=${user_of_profile_id}&my_tg_id=${tg_id}`;
+        profile_link = `https://otzoviktg.ru/get_person?tg_id=${user_of_profile_id}&my_tg_id=${tg_id}`;
     }
     console.log(profile_link);
     
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             console.log(product_id);
             what_is_is = "product";
-            var product_response = await fetch(`https://otozviktgtest.ru/get_reviews?product_id=${product_id}`)
+            var product_response = await fetch(`https://otzoviktg.ru/get_reviews?product_id=${product_id}`)
             var product_info = await product_response.json();
             product_data = product_info['product'];
             console.log(product_info);
@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             get_reviews_count = review_list.length;
             for_me_count.textContent = get_reviews_count;
             var fav_container = document.getElementById("fav");
-            index_response = await fetch(`https://otozviktgtest.ru/is_favourite?user_id=${tg_id}&product_id=${product_id}`);
+            index_response = await fetch(`https://otzoviktg.ru/is_favourite?user_id=${tg_id}&product_id=${product_id}`);
             started_index = await index_response.json();
             started_index = started_index;
             favourite_index = started_index;
@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 wrapper.style.top = "calc(var(--vh) * 0.224)";
                 wrapper_1.style.height = "calc(var(--vh) * 0.6)";
                 wrapper_2.style.height = "calc(var(--vh) * 0.6)";
-                var user_of_profile_response = await fetch(`https://otozviktgtest.ru/get_person?tg_id=${tg_id}`);
+                var user_of_profile_response = await fetch(`https://otzoviktg.ru/get_person?tg_id=${tg_id}`);
                 var user_of_profile_data = await user_of_profile_response.json();
                 console.log(user_of_profile_data);
                 document.getElementById("name").textContent = user_of_profile_data[2]; // предполагаем, что это имя
@@ -381,7 +381,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 main_review.textContent = user_of_profile_data[4];
                 var btn_from_me = document.querySelector(".from")
                 btn_from_me.style.display = 'none';
-                var reviews_response = await fetch(`https://otozviktgtest.ru/get_user_reviews?tg_id=${user_of_profile_id}`)
+                var reviews_response = await fetch(`https://otzoviktg.ru/get_user_reviews?tg_id=${user_of_profile_id}`)
                 var reviews_data = await reviews_response.json();
                 console.log(reviews_data);
 
@@ -405,7 +405,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 center_img.style.height = "33%"
                 document.getElementById("name").textContent = `${firstName} ${lastName}`.trim();
                 document.getElementById("username").textContent = username ? `@${username}` : "@Anonim";
-                var reviews_response = await fetch(`https://otozviktgtest.ru/get_user_reviews?tg_id=${tg_id}`)
+                var reviews_response = await fetch(`https://otzoviktg.ru/get_user_reviews?tg_id=${tg_id}`)
                 var reviews_data = await reviews_response.json();
                 console.log(reviews_data);
                 var from_me = reviews_data["received_reviews"];
@@ -562,7 +562,7 @@ function add_nothing(index) {
 }
 
 async function remove_review(id) {
-    var remove_response = await fetch(`https://otozviktgtest.ru/remove_review?id=${id}`, {
+    var remove_response = await fetch(`https://otzoviktg.ru/remove_review?id=${id}`, {
         method: "POST"
     })
     var data = await remove_response.json();
@@ -660,8 +660,8 @@ function open_profile(query) {
 
 async function add_favourite(product_id, user_tg_id, add) {
     const url = add
-        ? "https://otozviktgtest.ru/add_favourite"
-        : "https://otozviktgtest.ru/remove_favourite";
+        ? "https://otzoviktg.ru/add_favourite"
+        : "https://otzoviktg.ru/remove_favourite";
 
     const body = {
         user_id: user_tg_id,

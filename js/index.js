@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append('name', tg.initDataUnsafe?.user?.first_name);
     formData.append('username', tg.initDataUnsafe?.user?.username);
 
-    fetch('https://otozviktgtest.ru/verify_user', {
+    fetch('https://otzoviktg.ru/verify_user', {
         method: 'POST',
         body: formData
     })

@@ -322,7 +322,7 @@ async function sendReview() {
     console.log(tg_id, review_txt, rating, username);
     
     try {
-        const response = await fetch('https://otozviktgtest.ru/add_review', {
+        const response = await fetch('https://otzoviktg.ru/add_review', {
             method: 'POST',
             body: formData
         });
