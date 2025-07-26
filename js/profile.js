@@ -329,8 +329,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             var for_me_txt = document.getElementById("for_me_txt");
             var otzivi_text = document.getElementById("otzivi_txt");
             var wrapper = document.getElementById("wrapper");
+            var wrapper_2 = document.getElementById("first_tab");
             wrapper.style.top = "calc(var(--vh) * 0.224)";
-
+            wrapper_1.style.height = "calc(var(--vh) * 0.6)";
             for_me_txt.textContent = "Отзывы";
             otzivi_text.style.display = "none";
 
