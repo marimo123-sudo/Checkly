@@ -95,9 +95,6 @@ function renderReviews(containerId, reviews, is_product=false) {
             var photos = review.photos[0] ? `<img src="${review.photos[0]}" alt="" class="screenshot" onclick='show_screenshots(event, ${JSON.stringify(review.photos)})'>` : '';
             var person_review = review.person_review;
             var link = `user=${review.tg_id}`;
-            if (!reviewer_avatar) {
-                reviewer_avatar = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
-            }
         }
         else {
             var stars = review.stars;
@@ -110,7 +107,7 @@ function renderReviews(containerId, reviews, is_product=false) {
             else {
                 var link = `user=${review.to_user_tg_id || review.user_tg_id}`;
             }
-        if (!reviewer_avatar || !reviewer_avatar?.includes("https")) {
+        if (!reviewer_avatar || !reviewer_avatar?.includes("https") || reviewer_avatar.length < 10) {
             reviewer_avatar = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
         }
         var person_review = review.to_product_avg_rating || review.to_user_avg_rating || review.product_avg_rating;
