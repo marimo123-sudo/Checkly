@@ -110,10 +110,10 @@ function renderReviews(containerId, reviews, is_product=false) {
             else {
                 var link = `user=${review.to_user_tg_id || review.user_tg_id}`;
             }
-            if (!reviewer_avatar || !reviewer_avatar?.includes("https")) {
-                reviewer_avatar = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
-            }
-            var person_review = review.to_product_avg_rating || review.to_user_avg_rating || review.product_avg_rating;
+        if (!reviewer_avatar || !reviewer_avatar?.includes("https")) {
+            reviewer_avatar = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+        }
+        var person_review = review.to_product_avg_rating || review.to_user_avg_rating || review.product_avg_rating;
         }
         var text_review_div = `<div class="review_txt">${review_text}</div>`
         if (!photos) {
