@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("username").textContent = `@${product_data["username"]}`; // предполагаем, что это username
             main_review.textContent = product_data["review"];
             ava.src = product_data["avatar"];
-            if (ava.style.height == "0" || product_data["avatar"] == null || !user_data[3]?.includes("https")) {
+            if (ava.style.height == "0" || product_data["avatar"] == null || !product_data["avatar"]?.includes("https")) {
                 ava.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
             }
             var btn_from_me = document.querySelector(".from");
