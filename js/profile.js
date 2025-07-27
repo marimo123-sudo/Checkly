@@ -116,7 +116,7 @@ function renderReviews(containerId, reviews, is_product=false) {
         if (!photos) {
             text_review_div = `<div class="review_txt all_width">${review_text}</div>`
         }
-        const timeAgo = formatTimeAgo(review.created_at);
+        const timeAgo = review.created_at
         const reviewHTML = `
         <div class="review_container mini" data-review-id="${review.id}">
         
