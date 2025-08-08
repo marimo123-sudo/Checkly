@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(status);
         
         setTimeout(() => {
-            if (status) {
+            if (status == true || status == "true" || status == "True") {
                 window.location = "first_time.html";
             }
             else {
