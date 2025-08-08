@@ -89,13 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
         const startParam = urlParams.get('tgWebAppStartParam');
         const decodedParams = decodeStartAppParam(startParam);
-        var status = data['new'];
+        var status = data['status'];
         const queryString = encodeParams(decodedParams);
         console.log('Параметры для перехода:', queryString);
         console.log(status);
         
         setTimeout(() => {
-            if (status == true || status == "true" || status == "True") {
+            if (status == "new_user") {
                 window.location = "first_time.html";
             }
             else {
