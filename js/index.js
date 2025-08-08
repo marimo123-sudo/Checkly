@@ -89,17 +89,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
         const startParam = urlParams.get('tgWebAppStartParam');
         const decodedParams = decodeStartAppParam(startParam);
-
+        var status = data['new'];
         const queryString = encodeParams(decodedParams);
         console.log('Параметры для перехода:', queryString);
-
+        console.log(status);
+        
         setTimeout(() => {
-            if (queryString) {
-                window.location.href = `profile.html?${queryString}`;
-            } else if (data.status === 'new_user') {
-                window.location.href = "profile.html";
-            } else {
-                window.location.href = "profile.html";
+            if (status) {
+                window.location = "first_time.html";
+            }
+            else {
+                if (queryString) {
+                    window.location.href = `profile.html?${queryString}`;
+                } else if (data.status === 'new_user') {
+                    window.location.href = "profile.html";
+                } else {
+                    window.location.href = "profile.html";
+                }
             }
         }, 3000);
     })

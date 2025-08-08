@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Автозапуск при загрузке
 loadAnimation();
 
+function open_admin() {
+    const url = "https://t.me/use_media?profile";
+    window.open(url, "_blank");
+}
+
 function open_telegraph() {
     const url = "https://telegra.ph/Checkly--chtoby-doverie-v-Telegram-bylo-osoznannym-07-05";
     window.open(url, "_blank");
@@ -52,7 +57,7 @@ var search_btn = document.querySelector(".arrow-button")
 const inputDiv = document.querySelector('.input');
 
 search_btn.addEventListener("click", async () => {
-    if (inputDiv.textContent.trim().length >= 4) {
+    if (inputDiv.value.trim().length >= 4) {
         await startSearch();
     }
 });
@@ -66,7 +71,7 @@ async function startSearch() {
     search_btn.style.opacity = 0.7;
     can_search = false
     const input = document.querySelector('.input');
-    const query = input.textContent.trim();
+    const query = input.value.trim();
     var response
     var is_user = false
     if (query) {

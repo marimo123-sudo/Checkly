@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Поиск</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/search.css">
 <link rel="stylesheet" href="css/bottom_panel.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
@@ -19,21 +19,36 @@
     <div class="back" id="appContent">
         <div class="centered">
             <div class="about_project_container">
-                <div class="about_project" onclick="open_telegraph()">
-                    <div class="txt">О проекте</div>
-                    <img src="photos/three_lines.png" alt="info" width="24">
-                </div>
+                <!-- <div class="about_project" onclick="open_telegraph()">
+                    <div class="txt">О проекте</div> 
+                     <img src="photos/three_lines.png" alt="info" width="24">
+                </div> -->
             </div>
+            <div class="btns_container">
+                <div class="help_btn" onclick="window.location='first_time.html'">
+                    <img src="photos/crocodile_love.png" class="croco_img w" alt="">
+                    <div class="btn_txt">Как<br>пользоваться?</div>
+                </div>
+                <div class="help_btn" onclick="open_telegraph()">
+                    <img src="photos/bla_bla_bla.png" class="croco_img t" alt="">
+                    <div class="btn_txt f">О проекте</div>
+                </div>
+                <div class="help_btn" onclick="open_admin()">
+                    <img src="photos/crocodile_think.png" class="croco_img q" alt="">
+                    <div class="btn_txt f">Поддержка</div>
+                </div>
 
+            </div>
             <div class="input-container">
-                <div contenteditable="true" class="input" data-placeholder="@use_checkly_bot"></div>
+                <input type="text" class="input" name="" id="" placeholder="@use_checkly_bot">
                 <button class="arrow-button">
                     <img src="photos/search.png" alt="→">
                 </button>
             </div>
+            <div class="hint">*Найди человека или канал и оставь отзыв</div>
+            <div class="checkly_txt">Check'ly</div>
 
-
-            <div id="lottie-container" onclick="loadAnimation()"></div>
+            <!-- <div id="lottie-container" onclick="loadAnimation()"></div> -->
         </div>
         <div class="link_copied" id="linkCopied">Не удалось найти
             <img src="photos/search.png" alt="" class="chain_img">

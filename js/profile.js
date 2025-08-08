@@ -52,6 +52,7 @@ button3.addEventListener("click", () => {
 
 
 function renderReviews(containerId, reviews, is_product=false) {
+    
     const container = document.getElementById(containerId);
     container.innerHTML = ''; // очищаем предыдущий контент
     
@@ -145,6 +146,7 @@ function renderReviews(containerId, reviews, is_product=false) {
                             </div>
                         </div>
                     </div>
+                    
                     <div class="second_column">
                         ${photos}
                         ${has_bin}

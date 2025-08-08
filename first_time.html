@@ -4,16 +4,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <title></title>
     <link rel="stylesheet" href="css/first_time.css">
-    
-    <script src="telegram.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
     <script src="js/size.js"></script>
 </head>
 <body class="back">
     <div class="slider">
         <div class="slides">
-            <div class="slide">1</div>
-            <div class="slide">2</div>
-            <div class="slide">3</div>
+            <div class="slide">
+                <div class="centered">
+                    <div class="hello">Добро пожаловать!</div>
+                    <div class="description"> Checkly - сервис отзывов в телеграмм!<br>Собирай, оставляй, читай</div>
+                    <div class="item">
+                        <div id="lottie-container" onclick="loadAnimation()"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="centered">
+                    <div class="hello">Как собирать отзывы?</div>
+                    <div class="description"> В своем профиле скопируй ссылку<br>Отправь друзьям или клиентам</div>
+                    <div class="item">
+                        <div class="profile_container">
+                            <div class="first_column">
+                                <div class="name">Check'ly</div>
+                                <div class="username">@Checkly_use_bot</div>
+                                <div class="review_and_copy">
+                                    <div class="review_container">
+                                        <span class="review_count">5</span>
+                                        <span class="review_star">★</span>
+                                    </div>
+                                    <button class="link_copy_btn">
+                                        <img src="photos/link.png" class="link_copy_img">
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="second_column">
+                                <img src="photos/checkly.png" alt="" class="avatar">
+                            </div>
+                            <img src="photos/smiles/finger.png" class="finger" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="centered">
+                    <div class="hello">Просто!</div>
+                    <div class="description">
+                        Найди человека или канал по @Username<br>
+                        <div class="ret">И оставь отзыв
+                            <img src="photos/plus.png" class="plus" alt="">
+                        </div>
+                        
+                    </div>
+                    <div class="item">
+                        <div class="search_container">
+                            <div class="username_placeholder">@use_checkly_bot</div>
+                            <img src="photos/search.png" class="search_img" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="next_btn_container">
+            <button class="next_btn" onclick="goToSlide('next')">Продолжить</button>
         </div>
     </div>
 
@@ -23,10 +76,5 @@
         <span class="dot"></span>
     </div>
     <script src="js/first_time.js"></script>
-    <script>
-        setTimeout(() => {
-            window.location.href = "profile.html"; // Замени на нужный URL
-        }, 10000); // 10000 миллисекунд = 10 секунд
-    </script>
     <script src="js/telegram.js"></script>
 </body>

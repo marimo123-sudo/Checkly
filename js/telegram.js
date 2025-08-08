@@ -821,7 +821,7 @@
   var bottomBarColor = 'bottom_bar_bg_color';
   function getBottomBarColor() {
     if (bottomBarColor == 'bottom_bar_bg_color') {
-      return '#ffffff' || themeParams.bottom_bar_bg_color || themeParams.secondary_bg_color;
+      return '#F8F8F8' || themeParams.bottom_bar_bg_color || themeParams.secondary_bg_color;
     } else if (bottomBarColor == 'secondary_bg_color') {
       return themeParams.secondary_bg_color;
     } else if (bottomBarColor == 'bg_color') {
